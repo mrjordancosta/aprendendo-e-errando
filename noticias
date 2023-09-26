@@ -18,5 +18,5 @@ def get_news(query, api_key):
 
 if __name__ == "__main__":
     query = "teologia"
-    api_key = get_news('theology')
-    get_news(query, AIzaSyAPu9B5MoFvRRysphdAql-UG5zq1yFVdrw)
+    api_key = AIzaSyAPu9B5MoFvRRysphdAql-UG5zq1yFVdrw
+    get_news(query, api_key)
