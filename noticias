@@ -2,8 +2,9 @@ import requests
 
 def get_news(query, api_key):
     url = f"https://newsapi.org/v2/everything?q={query}&apiKey={api_key}"
+    try
     response = requests.get(url)
-    data = response.json()
+    data = json.loads(response.content.decode(''utf-8''))
 
     if data["status"] == "ok":
         articles = data["articles"]
@@ -14,7 +15,7 @@ def get_news(query, api_key):
             print("----------------------------------------")
     else:
         print("No news found.")
-
+except request.exceptions.RequestExpection as e:
 if __name__ == "__main__":
     query = "teologia"
     api_key = "AIzaSyAPu9B5MoFvRRysphdAql-UG5zq1yFVdrw"
