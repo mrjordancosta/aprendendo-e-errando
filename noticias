@@ -1,22 +1,38 @@
 import requests
 
-def get_news(query, api_key):
-    url = f"https://newsapi.org/v2/everything?q={query}&apiKey={api_key}"
-    try
-    response = requests.get(url)
-    data = json.loads(response.content.decode(''utf-8''))
+# Define the search query
+query = "suporte"
 
-    if data["status"] == "ok":
-        articles = data["articles"]
-        for article in articles:
-            print(f"Title: {article['title']}")
-            print(f"Description: {article['description']}")
-            print(f"URL: {article['url']}")
-            print("----------------------------------------")
-    else:
-        print("No news found.")
-except request.exceptions.RequestExpection as e:
-if __name__ == "__main__":
-    query = "teologia"
-    api_key = "AIzaSyAPu9B5MoFvRRysphdAql-UG5zq1yFVdrw"
-    get_news (query, api_key)
+# Set the Google Jobs API endpoint
+endpoint = "https://jobs.googleapis.com/v3/jobs:search"
+
+# Set the API key
+api_key = "AIzaSyAPu9B5MoFvRRysphdAql-UG5zq1yFVdrw"
+
+# Set the headers
+headers = {
+    "Authorization": "Bearer " + api_key,
+    "Content-Type": "application/json",
+}
+
+# Set the request body
+body = {
+    "query": query,
+    "location": "Brasil",
+    "radius": "100km",
+    "remoteWork": "true",
+}
+
+# Make the request
+response = requests.post(endpoint, headers=headers, json=body)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Parse the response as JSON
+    results = response.json()
+
+    # Print the results
+    for job in results["jobs"]:
+        print(job["title"])
+else:
+    print("Error:", response.status_code, response.text)
