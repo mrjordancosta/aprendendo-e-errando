@@ -1,0 +1,5 @@
+# Arquivos e diretórios a serem ignorados
+.env              
+
+# Ignorar arquivos de configuração específicos do sistema (por exemplo, arquivos de projeto do Visual Studio Code)
+.vscode/
